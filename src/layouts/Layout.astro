@@ -1,22 +1,30 @@
+---
+import "../styles/base.css";
+import "../styles/theme.css";
+import "../styles/typography.css";
+
+import NavBar from "../components/NavBar.astro";
+import ServerCard from "../components/ServerCard";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>The Lord's Land &bullet; Minecraft Server</title>
+		<meta name="description" content="No description yet!" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body>
-		<slot />
+		<NavBar />
+
+		<div id="wrapper">
+			<slot />
+		</div>
+
+		<div id="status-wrapper" class="bottom-[1rem] left-[1rem] fixed">
+			<ServerCard client:visible />
+		</div>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

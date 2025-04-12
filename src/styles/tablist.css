@@ -1,0 +1,35 @@
+@font-face {
+	font-family: "Minecraft";
+	src: url("/font/Minecraftia-Regular.ttf");
+}
+
+.minecraft-tablist {
+	display: flex;
+	flex-direction: column;
+	padding: .2rem;
+	background: rgba(0, 0, 0, .75);
+	font-family: "Minecraft";
+	overflow: hidden;
+}
+
+.minecraft-tablist-item {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: 0 .3rem;
+	color: #fff;
+}
+
+.player-head {
+	display: flex;
+	align-items: center;
+	color: #a5a5a5;
+	width: 1.5rem;
+}
+
+.player-name {
+	display: flex;
+	align-items: center;
+	padding-top: .5rem;
+	font-size: 1rem;
+}
