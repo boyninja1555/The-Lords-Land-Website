@@ -1,3 +1,4 @@
+// WARNING: This component is loaded on the browser because it is written in React (which has nothing to do with the server)
 import { useEffect, useState } from "react"
 import type PingResponse from "../types/ping-response"
 import type PlayerData from "../types/player-data"
@@ -9,6 +10,7 @@ export default function ServerCard() {
 	const [rePingStatus, setRePingStatus] = useState<number>(Math.random())
 	const [playerNamesModalOpened, setPlayerNamesModalOpened] = useState(false)
 
+	// Sets the state of the player names modal on first load
 	useEffect(() => {
 		const urlParams = new URLSearchParams(window.location.search)
 		if (urlParams.get("player-names-show") === "1") {
@@ -16,17 +18,24 @@ export default function ServerCard() {
 		}
 	}, [])
 
+	// Sets a function to update the status every time it is requested
 	useEffect(() => {
+		// Create an async function so we can fetch
 		async function fetchServerStatus() {
 			try {
+				// Fetch the status
 				const response = await fetch(import.meta.env.PUBLIC_PING_URL)
+
 				if (!response.ok) {
 					throw new Error("Network response was not ok")
 				}
+
+				// Check the response data, and then set the status
 				const data: PingResponse = await response.json()
-				console.log(data)
+				console.log(`PING RESPONSE: ${data}`)
 				setServerStatus(data)
 
+				// Provides a fallback for the player list
 				const originalPlayers =
 					(data.players?.list ||
 						[
@@ -36,6 +45,7 @@ export default function ServerCard() {
 							},
 						]) as PlayerData[]
 
+				// Re-makes the player list with cached content
 				const playersWithCache = originalPlayers.map((player: PlayerData) => {
 					const cleanedUUID = player.uuid.replace(/-/g, "")
 					return {
@@ -46,6 +56,7 @@ export default function ServerCard() {
 						},
 					}
 				})
+				// Run the async function, which is allowed in sync functions if we do not get back a value besides void
 				setPlayers(playersWithCache)
 			} catch (error) {
 				console.error("Failed to fetch server status:", error)
@@ -54,6 +65,7 @@ export default function ServerCard() {
 		fetchServerStatus()
 	}, [rePingStatus])
 
+	// Creates a function to toggle the visibility of the player names modal
 	function togglePlayerNamesModal() {
 		setPlayerNamesModalOpened(!playerNamesModalOpened)
 	}
@@ -65,8 +77,7 @@ export default function ServerCard() {
 				<span className="uppercase">
 					<a
 						href="#"
-						onClick={(e) => {
-							e.preventDefault()
+						onClick={() => {
 							setRePingStatus(Math.random())
 						}}
 					>
@@ -98,8 +109,7 @@ export default function ServerCard() {
 							<span>
 								<a
 									href="#"
-									onClick={(e) => {
-										e.preventDefault()
+									onClick={() => {
 										togglePlayerNamesModal()
 									}}
 								>

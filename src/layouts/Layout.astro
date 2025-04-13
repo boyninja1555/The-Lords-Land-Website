@@ -1,8 +1,10 @@
 ---
+// Includes the stylesheets used site-wide
 import "../styles/base.css";
 import "../styles/theme.css";
 import "../styles/typography.css";
 
+// Allows use of these widgets
 import NavBar from "../components/NavBar.astro";
 import ServerCard from "../components/ServerCard";
 ---
@@ -17,12 +19,15 @@ import ServerCard from "../components/ServerCard";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body>
+		<!-- Inserts the navigation bar at the top of the content -->
 		<NavBar />
 
+		<!-- Provides a container/wrapper for all the page content  -->
 		<div id="wrapper">
 			<slot />
 		</div>
 
+		<!-- Displays the server status on every page -->
 		<div id="status-wrapper" class="bottom-[1rem] left-[1rem] fixed">
 			<ServerCard client:visible />
 		</div>
