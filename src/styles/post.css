@@ -1,0 +1,20 @@
+/* Post-specific styles */
+table {
+	border-collapse: collapse;
+}
+
+table th,
+table td {
+	padding: 0.5rem;
+	text-align: left;
+	border: 0.2rem solid var(--foreground-2);
+}
+
+table thead {
+	font-weight: bold;
+	background-color: var(--background-2);
+}
+
+table tr:hover {
+	background-color: #9d4af1;
+}
