@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import LogoShort from "../assets/logo/short.png";
 import "../styles/post.css";
 
-function dateObjToFullDate(date: Date) {
+function dateObjToFullDate(date: Date, timezone: string) {
     const months = [
         "Janurary",
         "Feburary",
@@ -18,15 +18,19 @@ function dateObjToFullDate(date: Date) {
         "November",
         "December",
     ];
-    const month = months[date.getMonth()];
-    const day = date.getDay();
-    const year = date.getFullYear();
-    return `${month} ${day}, ${year}`;
+    const options: Intl.DateTimeFormatOptions = {
+        timeZone: timezone,
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
 }
 
 interface PostProps {
     title: string;
     pubDate: Date;
+    pubTimezone: string;
     description: string;
     authors: string[];
     tags: string[];
@@ -38,6 +42,7 @@ const usableProps: PostProps = {
     pubDate: !isNaN(Date.parse(props.pubDate))
         ? new Date(props.pubDate)
         : new Date(0),
+    pubTimezone: props.pubTimezone ? props.pubTimezone : "America/Chicago",
     description: props.description || "No description.",
     authors: Array.isArray(props.authors) ? props.authors : [],
     tags: Array.isArray(props.tags) ? props.tags : [],
@@ -84,7 +89,10 @@ const usableProps: PostProps = {
                                 class="text-sm text-foreground-2"
                             >
                                 <strong>Published:</strong>{" "}
-                                {dateObjToFullDate(usableProps.pubDate)}
+                                {dateObjToFullDate(
+                                    usableProps.pubDate,
+                                    usableProps.pubTimezone,
+                                )}
                             </dd>
                         )
                     }
