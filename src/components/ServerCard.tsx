@@ -5,9 +5,9 @@ import type PlayerData from "../types/player-data"
 import "../styles/tablist.css"
 
 export default function ServerCard() {
+	const [rePingStatus, setRePingStatus] = useState<number>(0)
 	const [serverStatus, setServerStatus] = useState<PingResponse | null>(null)
 	const [players, setPlayers] = useState<PlayerData[]>([])
-	const [rePingStatus, setRePingStatus] = useState<number>(Math.random())
 	const [playerNamesModalOpened, setPlayerNamesModalOpened] = useState(false)
 
 	// Sets the state of the player names modal on first load
@@ -18,24 +18,21 @@ export default function ServerCard() {
 		}
 	}, [])
 
-	// Sets a function to update the status every time it is requested
+	// Handles fetching the server status
 	useEffect(() => {
-		// Create an async function so we can fetch
 		async function fetchServerStatus() {
 			try {
-				// Fetch the status
 				const response = await fetch(import.meta.env.PUBLIC_PING_URL)
 
 				if (!response.ok) {
 					throw new Error("Network response was not ok")
 				}
 
-				// Check the response data, and then set the status
 				const data: PingResponse = await response.json()
 				console.log(`PING RESPONSE: ${data}`)
 				setServerStatus(data)
 
-				// Provides a fallback for the player list
+				// Fallback for player list
 				const originalPlayers =
 					(data.players?.list ||
 						[
@@ -45,7 +42,7 @@ export default function ServerCard() {
 							},
 						]) as PlayerData[]
 
-				// Re-makes the player list with cached content
+				// Maps players to include cache
 				const playersWithCache = originalPlayers.map((player: PlayerData) => {
 					const cleanedUUID = player.uuid.replace(/-/g, "")
 					return {
@@ -56,7 +53,6 @@ export default function ServerCard() {
 						},
 					}
 				})
-				// Run the async function, which is allowed in sync functions if we do not get back a value besides void
 				setPlayers(playersWithCache)
 			} catch (error) {
 				console.error("Failed to fetch server status:", error)
@@ -65,14 +61,16 @@ export default function ServerCard() {
 		fetchServerStatus()
 	}, [rePingStatus])
 
-	// Creates a function to toggle the visibility of the player names modal
+	// Toggles the player names modal
 	function togglePlayerNamesModal() {
 		setPlayerNamesModalOpened(!playerNamesModalOpened)
 	}
 
 	return (
 		<>
-			<div className="flex flex-col p-[1rem] w-max bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem]">
+			<div
+				className="flex flex-col p-[1rem] w-max bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem]"
+			>
 				<span className="text-[1.75rem]">Server Status</span>
 				<span className="uppercase">
 					<a
@@ -119,12 +117,6 @@ export default function ServerCard() {
 									</strong>
 								</a>
 							</span>
-							{/* Unused MOTD */}
-							{/* <span className="flex flex-col mt-[1rem] p-[.5rem] bg-[rgba(0,0,0,.75)] text-[.75rem]" style={{ fontFamily: "Minecraft", }}>
-								{serverStatus.motd?.html.map((line: string, index: number) => (
-									<span key={index} dangerouslySetInnerHTML={{ __html: line, }}></span>
-								))}
-							</span> */}
 						</>
 					) : (
 						<>
@@ -169,7 +161,9 @@ export default function ServerCard() {
 							</div>
 						))}
 					</div>
-					<a href="#" onClick={togglePlayerNamesModal}>Close</a>
+					<a href="#" onClick={togglePlayerNamesModal}>
+						Close
+					</a>
 				</div>
 			)}
 		</>

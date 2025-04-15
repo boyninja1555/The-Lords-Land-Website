@@ -36,7 +36,7 @@ interface PostProps {
     tags: string[];
 }
 
-const props = Astro.props.content;
+const props = Astro.props.content || Astro.props;
 const usableProps: PostProps = {
     title: props.title || "Untitled Article",
     pubDate: !isNaN(Date.parse(props.pubDate))

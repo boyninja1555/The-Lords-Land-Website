@@ -1,0 +1,39 @@
+---
+import FaqNavBar from "../components/FaqNavBar.astro";
+import PostLayout from "./PostLayout.astro";
+
+interface PostProps {
+    title: string;
+    pubDate: Date;
+    pubTimezone: string;
+    description: string;
+    authors: string[];
+    tags: string[];
+}
+
+const props = Astro.props.content;
+const usableProps: PostProps = {
+    title: props.title || "Untitled Article",
+    pubDate: !isNaN(Date.parse(props.pubDate))
+        ? new Date(props.pubDate)
+        : new Date(0),
+    pubTimezone: props.pubTimezone ? props.pubTimezone : "America/Chicago",
+    description: props.description || "No description.",
+    authors: Array.isArray(props.authors) ? props.authors : [],
+    tags: Array.isArray(props.tags) ? props.tags : [],
+};
+---
+
+<div id="faq-wrapper">
+    <FaqNavBar />
+    <PostLayout
+        title={usableProps.title}
+        pubDate={usableProps.pubDate}
+        pubTimezone={usableProps.pubTimezone}
+        description={usableProps.description}
+        authors={usableProps.authors}
+        tags={usableProps.tags}
+    >
+        <slot />
+    </PostLayout>
+</div>
