@@ -1,0 +1,58 @@
+---
+import TextContainer from "../layouts/TextContainer.astro";
+import ExternalLink from "../components/ExternalLink";
+
+import GiftIcon from "../assets/icon/gift.svg";
+import VoteIcon from "../assets/icon/vote.svg";
+
+interface DonationLink {
+    href: string;
+    icon: string;
+    name: string;
+}
+
+const donationLinks: DonationLink[] = [
+    {
+        href: "https://www.paypal.com/donate/?business=A6U9PL922YB6A&no_recurring=0&item_name=Self-funded+%26+volunteer-run.+Support+helps+the+server+grow+%26+means+the+world.+Thank+you+for+being+part+of+this+journey%21&currency_code=USD",
+        icon: GiftIcon.src,
+        name: "Donate",
+    },
+    {
+        href: "https://minecraft-server-list.com/server/510518/",
+        icon: VoteIcon.src,
+        name: "Vote (1)",
+    },
+    {
+        href: "https://findmcserver.com/server/wX3qdEwwj6?vote=true",
+        icon: VoteIcon.src,
+        name: "Vote (2)",
+    },
+    {
+        href: "https://best-minecraft-servers.co/server-the-lord-s-land.27670",
+        icon: VoteIcon.src,
+        name: "Vote (3)",
+    },
+    {
+        href: "https://minebrowse.com/server/6247",
+        icon: VoteIcon.src,
+        name: "Vote (4)",
+    },
+];
+---
+
+<TextContainer>
+    <h1 class="text-center">Support Us!</h1>
+
+    <div class="flex flex-col items-center mt-[1rem] text-[1.5rem]">
+        {
+            donationLinks.map((link: DonationLink) => (
+                <ExternalLink href={link.href} client:visible>
+                    <span class="flex items-center gap-[.5rem]">
+                        <img src={link.icon} class="w-[1.5rem]" width={64} />
+                        <span>{link.name}</span>
+                    </span>
+                </ExternalLink>
+            ))
+        }
+    </div>
+</TextContainer>

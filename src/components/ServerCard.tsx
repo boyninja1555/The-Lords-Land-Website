@@ -96,13 +96,17 @@ export default function ServerCard() {
 							</span>
 							<span>
 								<strong>Player Count:</strong>{" "}
-								<span className="text-yellow-300">
-									{serverStatus.players?.online}
-								</span>{" "}
-								out of{" "}
-								<span className="text-yellow-300">
-									{serverStatus.players?.max}
-								</span>
+								{serverStatus.players ? (
+									<>
+										<span className="text-yellow-300">
+											{serverStatus.players?.online}
+										</span>{" "}
+										out of{" "}
+										<span className="text-yellow-300">
+											{serverStatus.players?.max}
+										</span>
+									</>
+								) : <span>0</span>}
 							</span>
 							<span>
 								<a

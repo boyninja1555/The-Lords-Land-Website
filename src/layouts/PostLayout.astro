@@ -1,23 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import TextContainer from "./TextContainer.astro";
 import LogoShort from "../assets/logo/short.png";
 import "../styles/post.css";
 
 function dateObjToFullDate(date: Date, timezone: string) {
-    const months = [
-        "Janurary",
-        "Feburary",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
     const options: Intl.DateTimeFormatOptions = {
         timeZone: timezone,
         month: "long",
@@ -49,57 +35,45 @@ const usableProps: PostProps = {
 };
 ---
 
-<Layout>
-    <div
-        class="p-[1rem] max-w-[50vw] bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem] w-full top-[20vh] left-[50%] translate-x-[-50%] absolute"
-    >
-        <article class="relative">
-            <header class="flex flex-col mb-[2rem] mx-auto max-w-[50%]">
-                <dl>
-                    <dt
-                        class="flex flex-col items-center mb-[1rem] text-center"
-                    >
-                        <h1 id="title">{usableProps.title}</h1>
-                        <img src={LogoShort.src} alt="TLL" width={300} />
-                    </dt>
-                    <dd>
-                        <span id="description">{usableProps.description}</span>
+<TextContainer>
+    <article class="relative">
+        <header class="flex flex-col mb-[2rem] mx-auto max-w-[50%]">
+            <dl>
+                <dt class="flex flex-col items-center mb-[1rem] text-center">
+                    <h1 id="title">{usableProps.title}</h1>
+                    <img src={LogoShort.src} alt="TLL" width={300} />
+                </dt>
+                <dd>
+                    <span id="description">{usableProps.description}</span>
 
-                        <ul
-                            id="tags"
-                            class="flex flex-wrap gap-[.5rem] my-[.5rem]"
-                        >
-                            {
-                                usableProps.tags.length !== 0 &&
-                                    usableProps.tags.map((tag: string) => (
-                                        <div
-                                            id={`tag-${tag}`}
-                                            class="py-[.25rem] px-[1rem] bg-background-1 border-[.2rem] border-foreground-secondary rounded-[.5rem]"
-                                        >
-                                            {tag}
-                                        </div>
-                                    ))
-                            }
-                        </ul>
-                    </dd>
-                    {
-                        usableProps.pubDate && (
-                            <dd
-                                id="published"
-                                class="text-sm text-foreground-2"
-                            >
-                                <strong>Published:</strong>{" "}
-                                {dateObjToFullDate(
-                                    usableProps.pubDate,
-                                    usableProps.pubTimezone,
-                                )}
-                            </dd>
-                        )
-                    }
-                </dl>
-            </header>
+                    <ul id="tags" class="flex flex-wrap gap-[.5rem] my-[.5rem]">
+                        {
+                            usableProps.tags.length !== 0 &&
+                                usableProps.tags.map((tag: string) => (
+                                    <div
+                                        id={`tag-${tag}`}
+                                        class="py-[.25rem] px-[1rem] bg-background-1 border-[.2rem] border-foreground-secondary rounded-[.5rem]"
+                                    >
+                                        {tag}
+                                    </div>
+                                ))
+                        }
+                    </ul>
+                </dd>
+                {
+                    usableProps.pubDate && (
+                        <dd id="published" class="text-sm text-foreground-2">
+                            <strong>Published:</strong>{" "}
+                            {dateObjToFullDate(
+                                usableProps.pubDate,
+                                usableProps.pubTimezone,
+                            )}
+                        </dd>
+                    )
+                }
+            </dl>
+        </header>
 
-            <slot />
-        </article>
-    </div>
-</Layout>
+        <slot />
+    </article>
+</TextContainer>
