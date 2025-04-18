@@ -25,7 +25,10 @@ const usableProps: PostProps = {
 ---
 
 <div id="faq-wrapper">
-    <FaqNavBar />
+    <div class="h-screen top-0 left-0 fixed z-50">
+        <FaqNavBar />
+    </div>
+
     <PostLayout
         title={usableProps.title}
         pubDate={usableProps.pubDate}

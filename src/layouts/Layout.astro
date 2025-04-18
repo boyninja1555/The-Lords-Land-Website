@@ -7,6 +7,7 @@ import "../styles/typography.css";
 // Allows use of these widgets
 import NavBar from "../components/NavBar.astro";
 import ServerCard from "../components/ServerCard";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -23,7 +24,7 @@ import ServerCard from "../components/ServerCard";
 		<NavBar />
 
 		<!-- Provides a container/wrapper for all the page content  -->
-		<div id="wrapper">
+		<div id="wrapper" class="min-h-screen">
 			<slot />
 		</div>
 
@@ -31,5 +32,8 @@ import ServerCard from "../components/ServerCard";
 		<div id="status-wrapper" class="bottom-[1rem] right-[1rem] fixed">
 			<ServerCard client:visible />
 		</div>
+
+		<!-- Displays the footer -->
+		<Footer />
 	</body>
 </html>

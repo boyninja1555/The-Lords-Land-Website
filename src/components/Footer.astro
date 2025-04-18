@@ -1,0 +1,27 @@
+---
+import ExternalLink from "./ExternalLink";
+
+const generatedYear = new Date().getFullYear();
+---
+
+<!-- Creates a footer, displaying copyright, etc -->
+<footer
+    class="flex flex-col items-center py-[2rem] bg-background-2 border-t-[.2rem] border-foreground-2 w-full"
+>
+    <div class="text-foreground-2">
+        &copy; {generatedYear}
+        <ExternalLink
+            href="https://github.com/boyninja1555/The-Lords-Land-Website"
+            client:visible>TLL</ExternalLink
+        >, <ExternalLink href="https://github.com/boyninja1555" client:visible
+            >boyninja1555</ExternalLink
+        >
+    </div>
+
+    <div>
+        Website created and maintained by <ExternalLink
+            href="mailto:flappyfloorg@gmail.com"
+            client:visible>Floor Mann</ExternalLink
+        >
+    </div>
+</footer>

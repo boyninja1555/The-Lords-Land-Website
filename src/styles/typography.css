@@ -43,3 +43,14 @@ p:not(.override-typography) {
 	text-indent: 2rem;
 	color: var(--foreground-2);
 }
+
+a:not(.override-typography),
+button.anchor {
+	font-style: italic;
+}
+
+a:not(.override-typography):hover,
+button.anchor:hover {
+	font-style: normal;
+	text-decoration: underline;
+}

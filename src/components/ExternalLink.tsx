@@ -9,7 +9,12 @@ export default function ExternalLink({ children, href, }: ExternalLinkProps) {
     const url = new URL(href)
 
     const onExternalLinkOpen = React.useCallback(() => {
-        const confirmed = confirm(`Are you sure you want to visit this website?\n\n${url.hostname}`)
+        let confirmed: boolean | null
+
+        if (url.protocol === "mailto:")
+            confirmed = confirm(`Are you sure you want to email this person?\n\n${url.pathname || url}`)
+        else
+            confirmed = confirm(`Are you sure you want to visit this website?\n\n${url.hostname || url}`)
 
         if (confirmed) {
             window.open(url.href, "_blank")
@@ -18,7 +23,7 @@ export default function ExternalLink({ children, href, }: ExternalLinkProps) {
 
     return (
         <>
-            <button onClick={onExternalLinkOpen} style={{ display: "inline-block", width: "max-content", cursor: "pointer", }}>
+            <button onClick={onExternalLinkOpen} style={{ display: "inline-block", width: "max-content", cursor: "pointer", }} className="anchor">
                 {children}
             </button>
         </>
