@@ -69,10 +69,10 @@ export default function ServerCard() {
 	return (
 		<>
 			<div
-				className="flex flex-col p-[1rem] w-max bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem]"
+				className="flex flex-col p-[1rem] w-max bg-background-2-translucent border-[.2rem] border-foreground-2 rounded-[1rem]"
 			>
 				<span className="text-[1.75rem]">Server Status</span>
-				<span className="uppercase">
+				<span className="uppercase font-[Arial]">
 					<a
 						href="#"
 						onClick={() => {
@@ -86,16 +86,16 @@ export default function ServerCard() {
 				<div className="flex flex-col mt-[1rem]">
 					{serverStatus ? (
 						<>
-							<span>
-								<strong>Status:</strong>{" "}
+							<span className="font-[Arial]">
+								<strong className="font-[Seagram]">Status:</strong>{" "}
 								{serverStatus.online ? (
 									<span className="text-green-500">Online</span>
 								) : (
 									<span className="text-red-500">Offline</span>
 								)}
 							</span>
-							<span>
-								<strong>Player Count:</strong>{" "}
+							<span className="font-[Arial]">
+								<strong className="font-[Seagram]">Player Count:</strong>{" "}
 								{serverStatus.players ? (
 									<>
 										<span className="text-yellow-300">
@@ -116,7 +116,7 @@ export default function ServerCard() {
 									}}
 								>
 									Player Names{" "}
-									<strong>
+									<strong className="font-[Arial]">
 										(Click to {playerNamesModalOpened ? "Close" : "Open"})
 									</strong>
 								</a>
@@ -124,16 +124,16 @@ export default function ServerCard() {
 						</>
 					) : (
 						<>
-							<span>
-								<strong>Status:</strong> Loading...
+							<span className="font-[Arial]">
+								<strong className="font-[Seagram]">Status:</strong> Loading...
 							</span>
-							<span>
-								<strong>Player Count:</strong> Loading...
+							<span className="font-[Arial]">
+								<strong className="font-[Seagram]">Player Count:</strong> Loading...
 							</span>
 							<span>
 								<span className="text-gray-300">
 									Player Names{" "}
-									<strong>
+									<strong className="font-[Arial]">
 										(Click to {playerNamesModalOpened ? "Close" : "Open"})
 									</strong>
 								</span>
@@ -146,7 +146,7 @@ export default function ServerCard() {
 			{playerNamesModalOpened && (
 				<div
 					id="player-names-modal"
-					className="flex flex-col p-[1rem] bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem] max-w-[40vw] w-full fixed top-[30vh] left-[50%] transform -translate-x-1/2"
+					className="flex flex-col p-[1rem] bg-background-2-translucent border-[.2rem] border-foreground-2 rounded-[1rem] max-w-[40vw] w-full fixed top-[30vh] left-[50%] transform -translate-x-1/2"
 				>
 					<h2>Player List with Names</h2>
 					<div className="minecraft-tablist mt-[1rem]">

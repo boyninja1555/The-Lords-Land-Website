@@ -7,6 +7,13 @@
 
 html,
 body {
+	font-family: "Seagram";
 	background-color: var(--background-1);
 	color: var(--foreground-1);
+}
+
+/* Global Font(s) */
+@font-face {
+	font-family: "Seagram";
+	src: url("/font/Seagram.ttf");
 }

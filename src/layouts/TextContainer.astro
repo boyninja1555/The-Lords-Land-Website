@@ -1,11 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ArticleBackground from "../assets/background/article-2025-04-12_18.47.06.jpg";
 ---
 
 <Layout>
     <div
-        class="p-[1rem] max-w-[50vw] bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem] w-full top-[20vh] left-[50%] translate-x-[-50%] absolute"
+        id="background-wrapper"
+        class="w-full h-screen top-0 left-0 absolute"
+        style={{
+            backgroundImage: `url("${ArticleBackground.src}")`,
+            backgroundSize: "cover",
+        }}
     >
-        <slot />
+        <div
+            class="p-[1rem] max-w-[50vw] bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem] w-full top-[20vh] left-[50%] translate-x-[-50%] absolute"
+        >
+            <slot />
+        </div>
     </div>
 </Layout>
