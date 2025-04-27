@@ -8,9 +8,9 @@ export default function NavBarLinks() {
     return (
         <>
             <SmallScreen>
-                <a href="#" onClick={() => setVisible(!visible)} className="text-[3rem]">
+                <span onClick={() => setVisible(!visible)} className="text-[3rem] cursor-pointer">
                     <img src={MenuIcon.src} alt="#" className="h-[3rem]" />
-                </a>
+                </span>
                 <div className="p-[1rem] bg-background-2 w-[80%] h-screen top-0 left-0 fixed z-[70]" style={{
                     visibility: visible ? "visible" : "hidden",
                 }}>

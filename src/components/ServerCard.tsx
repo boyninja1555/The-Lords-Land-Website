@@ -73,14 +73,14 @@ export default function ServerCard() {
 			>
 				<span className="text-[1.75rem]">Server Status</span>
 				<span className="uppercase font-[Arial]">
-					<a
-						href="#"
+					<span
 						onClick={() => {
 							setRePingStatus(Math.random())
 						}}
+						className="cursor-pointer"
 					>
 						Update <strong>(Click)</strong>
-					</a>
+					</span>
 				</span>
 
 				<div className="flex flex-col mt-[1rem]">
@@ -109,17 +109,17 @@ export default function ServerCard() {
 								) : <span>0</span>}
 							</span>
 							<span>
-								<a
-									href="#"
+								<span
 									onClick={() => {
 										togglePlayerNamesModal()
 									}}
+									className="cursor-pointer"
 								>
 									Player Names{" "}
 									<strong className="font-[Arial]">
 										(Click to {playerNamesModalOpened ? "Close" : "Open"})
 									</strong>
-								</a>
+								</span>
 							</span>
 						</>
 					) : (
@@ -165,9 +165,9 @@ export default function ServerCard() {
 							</div>
 						))}
 					</div>
-					<a href="#" onClick={togglePlayerNamesModal}>
+					<span onClick={togglePlayerNamesModal} className="inline-block text-center cursor-pointer">
 						Close
-					</a>
+					</span>
 				</div>
 			)}
 		</>
