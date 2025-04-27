@@ -1,4 +1,5 @@
 ---
+import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
 import ArticleBackground from "../assets/background/article-2025-04-12_18.47.06.jpg";
 ---
@@ -10,12 +11,17 @@ import ArticleBackground from "../assets/background/article-2025-04-12_18.47.06.
         style={{
             backgroundImage: `url("${ArticleBackground.src}")`,
             backgroundSize: "cover",
+            backgroundPosition: "center",
         }}
+        transition:animate={fade({ duration: "0.6s" })}
+        transition:name="background"
     >
-        <div
-            class="p-[1rem] max-w-[50vw] bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem] w-full top-[20vh] left-[50%] translate-x-[-50%] absolute"
-        >
-            <slot />
+        <div class="mx-[1rem]">
+            <div
+                class="mt-[20vh] mx-auto p-[1rem] max-w-[585px] w-full bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem]"
+            >
+                <slot />
+            </div>
         </div>
     </div>
 </Layout>

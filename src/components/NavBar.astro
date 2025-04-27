@@ -1,30 +1,21 @@
 ---
+import NavBarLinks from "./NavBarLinks";
 import DiscordLogo from "../assets/discord.png";
 ---
 
 <!-- Creates a navigation bar always above the content -->
 <nav
-    class="flex items-center justify-between p-[2rem] border-b-[.2rem] border-foreground-2 w-full h-full max-h-[5vw] top-0 left-0 fixed z-50"
+    class="flex items-center justify-between p-[2rem] border-b-[.2rem] border-foreground-2 max-h-[5rem] w-full h-full top-0 left-0 fixed z-50"
 >
     <!-- Shows the Discord logo, which links to the official Discord -->
     <a href="https://discord.gg/uU5Bf5SwwY" target="_blank">
         <img
             src={DiscordLogo.src}
             alt="Discord Logo"
-            class="h-[4vw] rounded-[10%]"
+            class="h-[4rem] rounded-[10%]"
         />
     </a>
 
     <!-- Provides a list of page links (navigatable) -->
-    <ul class="flex gap-[1rem]">
-        <li><a href="/">Home</a></li>
-        <li><a href="/article/about-us">About Us</a></li>
-        <li><a href="/article/server-guide">Server Guide</a></li>
-        <li><a href="/updates">Updates <strong>(NOT DONE!)</strong></a></li>
-        <li>
-            <a href="/support-us">Support Us</a>
-        </li>
-        <li><a href="/contact">Contact <strong>(NOT DONE!)</strong></a></li>
-        <li><a href="/faq/Info/Intro">FAQs</a></li>
-    </ul>
+    <NavBarLinks client:visible />
 </nav>

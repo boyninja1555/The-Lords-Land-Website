@@ -1,15 +1,25 @@
 ---
+import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
 import LogoLong from "../assets/logo/long.png";
 import IndexBackground from "../assets/background/index-2025-04-12_18.45.34.jpg";
 ---
 
 <Layout>
-	<div id="background-wrapper" class="w-full h-screen top-0 left-0 absolute" style={{
-		backgroundImage: `url("${IndexBackground.src}")`,
-		backgroundSize: "cover",
-	}}>
-		<div class="text-center top-[20vh] left-[50%] translate-x-[-50%] absolute">
+	<div
+		id="background-wrapper"
+		class="w-full h-screen top-0 left-0 absolute"
+		style={{
+			backgroundImage: `url("${IndexBackground.src}")`,
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+		}}
+		transition:animate={fade({ duration: "0.6s" })}
+		transition:name="background"
+	>
+		<div
+			class="text-center top-[20vh] left-[50%] translate-x-[-50%] absolute"
+		>
 			<img src={LogoLong.src} alt="The Lord's Land" />
 			<a href="/article/server-guide" class="inline-block">
 				<h1>Check Out the Official Guide!</h1>
