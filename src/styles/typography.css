@@ -5,7 +5,7 @@ h3:not(.override-typography),
 h4:not(.override-typography),
 h5:not(.override-typography),
 h6:not(.override-typography) {
-	color: var(--foreground-1);
+	/* color: var(--foreground-1); */
 }
 
 h1:not(.override-typography) {
@@ -41,7 +41,7 @@ h6:not(.override-typography) {
 p:not(.override-typography) {
 	margin: 1rem;
 	text-indent: 2rem;
-	color: var(--foreground-2);
+	/* color: var(--foreground-2); */
 }
 
 a:not(.override-typography),

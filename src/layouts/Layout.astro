@@ -11,35 +11,45 @@ import Footer from "../components/Footer.astro";
 
 // Imports components needed for smooth navigation
 import { ClientRouter } from "astro:transitions";
+
+import ParchmentTile from "../assets/background/parchment_tile.avif";
 ---
 
 <!doctype html>
 <html lang="en" transition:animate="none">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>The Lord's Land &bullet; Minecraft Server</title>
-		<meta name="description" content="No description yet!" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <!-- Page Metadata  -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>The Lord's Land &bullet; Minecraft Server</title>
+    <meta name="description" content="No description yet!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Enables smooth navigation site-wide -->
-		<ClientRouter />
-	</head>
-	<body>
-		<!-- Inserts the navigation bar at the top of the content -->
-		<NavBar transition:persist />
+    <!-- Resources  -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="manifest" href="/manifest.json" />
 
-		<!-- Provides a container/wrapper for all the page content  -->
-		<div id="wrapper" class="min-h-screen">
-			<slot />
-		</div>
+    <!-- Important Images -->
+    <link rel="preload" href={ParchmentTile.src} />
 
-		<!-- Displays the server status on every page -->
-		<div id="status-wrapper" class="bottom-[1rem] right-[1rem] fixed">
-			<ServerCard client:visible transition:persist />
-		</div>
+    <!-- Enables smooth navigation site-wide -->
+    <ClientRouter />
+  </head>
+  <body>
+    <!-- Inserts the navigation bar at the top of the content -->
+    <NavBar transition:persist />
 
-		<!-- Displays the footer -->
-		<Footer transition:persist />
-	</body>
+    <!-- Provides a container/wrapper for all the page content  -->
+    <div id="wrapper" class="min-h-screen">
+      <slot />
+    </div>
+
+    <!-- Displays the server status on every page -->
+    <div id="status-wrapper" class="bottom-[1rem] right-[1rem] fixed">
+      <ServerCard client:visible transition:persist />
+    </div>
+
+    <!-- Displays the footer -->
+    <Footer transition:persist />
+  </body>
 </html>

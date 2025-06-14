@@ -1,27 +1,31 @@
 ---
 import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
-import ArticleBackground from "../assets/background/article-2025-04-12_18.47.06.jpg";
+import ArticleBackground from "../assets/background/article-2025-04-12_18.47.06.avif";
+import ParchmentTile from "../assets/background/parchment_tile.avif";
 ---
 
 <Layout>
-    <div
-        id="background-wrapper"
-        class="w-full h-screen top-0 left-0 absolute"
+  <div
+    id="background-wrapper"
+    class="w-full h-screen top-0 left-0 absolute"
+    style={{
+      backgroundImage: `url("${ArticleBackground.src}")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+    transition:animate={fade({ duration: "0.6s" })}
+    transition:name="background"
+  >
+    <div class="mx-[1rem]">
+      <div
+        class="mt-[20vh] mx-auto p-[1rem] max-w-[585px] w-full bg-background-theme border-double border-[.2rem] border-foreground-2 rounded-[1rem] text-foreground-theme-1"
         style={{
-            backgroundImage: `url("${ArticleBackground.src}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+          backgroundImage: `url("${ParchmentTile.src}")`,
         }}
-        transition:animate={fade({ duration: "0.6s" })}
-        transition:name="background"
-    >
-        <div class="mx-[1rem]">
-            <div
-                class="mt-[20vh] mx-auto p-[1rem] max-w-[585px] w-full bg-background-2 border-[.2rem] border-foreground-2 rounded-[1rem]"
-            >
-                <slot />
-            </div>
-        </div>
+      >
+        <slot />
+      </div>
     </div>
+  </div>
 </Layout>

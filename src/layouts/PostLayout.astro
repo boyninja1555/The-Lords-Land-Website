@@ -52,7 +52,7 @@ const usableProps: PostProps = {
                                 usableProps.tags.map((tag: string) => (
                                     <div
                                         id={`tag-${tag}`}
-                                        class="py-[.25rem] px-[1rem] bg-background-1 border-[.2rem] border-foreground-secondary rounded-[.5rem]"
+                                        class="py-[.25rem] px-[1rem] border-double border-[.2rem] border-foreground-theme-2 rounded-[.5rem] color-foreground-theme-2"
                                     >
                                         {tag}
                                     </div>
@@ -62,7 +62,7 @@ const usableProps: PostProps = {
                 </dd>
                 {
                     usableProps.pubDate && (
-                        <dd id="published" class="text-sm text-foreground-2">
+                        <dd id="published" class="text-sm text-foreground-theme-2">
                             <strong>Published:</strong>{" "}
                             {dateObjToFullDate(
                                 usableProps.pubDate,

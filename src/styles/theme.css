@@ -2,11 +2,18 @@
 @import "tailwindcss";
 
 :root {
+	/* Sets the non-theme colors */
 	--background-1: #080808;
-	--background-2: #9c978e;
+	--background-2: #282828;
 	--background-2-translucent: rgba(156, 151, 142, .3);
+
 	--foreground-1: #ffffff;
 	--foreground-2: #cfcfcf;
+
+	/* Sets the theme colors */
+	--background-theme: #F1E9D2;
+	--foreground-theme-1: #181818;
+	--foreground-theme-2: #232323;
 }
 
 @theme {
@@ -15,4 +22,8 @@
 	--color-background-2-translucent: var(--background-2-translucent);
 	--color-foreground-1: var(--foreground-1);
 	--color-foreground-2: var(--foreground-2);
+
+	--color-background-theme: var(--background-theme);
+	--color-foreground-theme-1: var(--foreground-theme-1);
+	--color-foreground-theme-2: var(--foreground-theme-2);
 }

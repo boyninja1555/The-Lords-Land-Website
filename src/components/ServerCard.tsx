@@ -1,8 +1,9 @@
 // WARNING: This component is loaded on the browser because it is written in React (which has nothing to do with the server)
+import "../styles/tablist.css"
 import { useEffect, useState } from "react"
 import type PingResponse from "../types/ping-response"
 import type PlayerData from "../types/player-data"
-import "../styles/tablist.css"
+import ParchmentTile from "../assets/background/parchment_tile.avif"
 
 export default function ServerCard() {
 	const [rePingStatus, setRePingStatus] = useState<number>(0)
@@ -29,7 +30,7 @@ export default function ServerCard() {
 				}
 
 				const data: PingResponse = await response.json()
-				console.log(`PING RESPONSE: ${data}`)
+				console.log(`[ProductionSafeDebugLog] Server status ping returned: ${JSON.stringify(data, null, 2)}`)
 				setServerStatus(data)
 
 				// Fallback for player list
@@ -69,7 +70,10 @@ export default function ServerCard() {
 	return (
 		<>
 			<div
-				className="flex flex-col p-[1rem] w-max bg-background-2-translucent border-[.2rem] border-foreground-2 rounded-[1rem]"
+				className="flex flex-col p-[1rem] w-max border-double border-[.2rem] border-foreground-2 rounded-[1rem] text-foreground-theme-1"
+				style={{
+					backgroundImage: `url("${ParchmentTile.src}")`,
+				}}
 			>
 				<span className="text-[1.75rem]">Server Status</span>
 				<span className="uppercase font-[Arial]">
@@ -89,20 +93,20 @@ export default function ServerCard() {
 							<span className="font-[Arial]">
 								<strong className="font-[Seagram]">Status:</strong>{" "}
 								{serverStatus.online ? (
-									<span className="text-green-500">Online</span>
+									<span className="text-green-700">Online</span>
 								) : (
-									<span className="text-red-500">Offline</span>
+									<span className="text-red-700">Offline</span>
 								)}
 							</span>
 							<span className="font-[Arial]">
 								<strong className="font-[Seagram]">Player Count:</strong>{" "}
 								{serverStatus.players ? (
 									<>
-										<span className="text-yellow-300">
+										<span className="text-yellow-700">
 											{serverStatus.players?.online}
 										</span>{" "}
 										out of{" "}
-										<span className="text-yellow-300">
+										<span className="text-yellow-700">
 											{serverStatus.players?.max}
 										</span>
 									</>
@@ -115,10 +119,10 @@ export default function ServerCard() {
 									}}
 									className="cursor-pointer"
 								>
-									Player Names{" "}
-									<strong className="font-[Arial]">
+									<strong>Player Names</strong>{" "}
+									<span className="font-[Arial]">
 										(Click to {playerNamesModalOpened ? "Close" : "Open"})
-									</strong>
+									</span>
 								</span>
 							</span>
 						</>
@@ -131,7 +135,7 @@ export default function ServerCard() {
 								<strong className="font-[Seagram]">Player Count:</strong> Loading...
 							</span>
 							<span>
-								<span className="text-gray-300">
+								<span className="text-foreground-theme-2">
 									Player Names{" "}
 									<strong className="font-[Arial]">
 										(Click to {playerNamesModalOpened ? "Close" : "Open"})
@@ -146,7 +150,10 @@ export default function ServerCard() {
 			{playerNamesModalOpened && (
 				<div
 					id="player-names-modal"
-					className="flex flex-col p-[1rem] bg-background-2-translucent border-[.2rem] border-foreground-2 rounded-[1rem] max-w-[40vw] w-full fixed top-[30vh] left-[50%] transform -translate-x-1/2"
+					className="flex flex-col p-[1rem] border-double border-[.2rem] border-foreground-2 rounded-[1rem] max-w-[40vw] w-full fixed top-[30vh] left-[50%] transform -translate-x-1/2"
+					style={{
+						backgroundImage: `url("${ParchmentTile.src}")`,
+					}}
 				>
 					<h2>Player List with Names</h2>
 					<div className="minecraft-tablist mt-[1rem]">
