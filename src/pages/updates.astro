@@ -1,8 +1,8 @@
 ---
 import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
-import LogoLong from "../assets/logo/long.png";
 import IndexBackground from "../assets/background/index-2025-04-12_18.45.34.avif";
+import ExternalLink from "../components/ExternalLink";
 ---
 
 <Layout>
@@ -18,7 +18,12 @@ import IndexBackground from "../assets/background/index-2025-04-12_18.45.34.avif
     transition:name="background"
   >
     <div class="text-center top-[20vh] left-[50%] translate-x-[-50%] absolute">
-      <img src={LogoLong.src} alt="The Lord's Land" />
+      <span>Redirecting you to the Discord's Updates channel...</span>
     </div>
   </div>
 </Layout>
+
+<script>
+  window.location.href =
+    "https://discord.com/channels/1357101151111348448/1358266002185650349";
+</script>

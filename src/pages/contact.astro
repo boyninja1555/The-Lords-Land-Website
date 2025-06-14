@@ -1,8 +1,8 @@
 ---
 import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
-import LogoLong from "../assets/logo/long.png";
 import IndexBackground from "../assets/background/index-2025-04-12_18.45.34.avif";
+import ExternalLink from "../components/ExternalLink";
 ---
 
 <Layout>
@@ -18,7 +18,11 @@ import IndexBackground from "../assets/background/index-2025-04-12_18.45.34.avif
     transition:name="background"
   >
     <div class="text-center top-[20vh] left-[50%] translate-x-[-50%] absolute">
-      <img src={LogoLong.src} alt="The Lord's Land" />
+      <span
+        >Visit <ExternalLink client:visible href="mailto:benny@gmail.com"
+          >this page</ExternalLink
+        > to email the server owner</span
+      >
     </div>
   </div>
 </Layout>

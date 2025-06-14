@@ -18,11 +18,11 @@ export default function NavBarLinks() {
                         <li><a href="/">Home</a></li>
                         <li><a href="/article/about-us">About Us</a></li>
                         <li><a href="/article/server-guide">Server Guide</a></li>
-                        <li><a href="/updates">Updates <strong>(NOT DONE!)</strong></a></li>
+                        <li><a href="/updates">Updates</a></li>
                         <li>
                             <a href="/support-us">Support Us</a>
                         </li>
-                        <li><a href="/contact">Contact <strong>(NOT DONE!)</strong></a></li>
+                        <li><a href="/contact">Contact</a></li>
                         <li><a href="/faq/Info/Intro">FAQs</a></li>
                     </ul>
                 </div>
@@ -32,11 +32,11 @@ export default function NavBarLinks() {
                     <li><a href="/">Home</a></li>
                     <li><a href="/article/about-us">About Us</a></li>
                     <li><a href="/article/server-guide">Server Guide</a></li>
-                    <li><a href="/updates">Updates <strong>(NOT DONE!)</strong></a></li>
+                    <li><a href="/updates">Updates</a></li>
                     <li>
                         <a href="/support-us">Support Us</a>
                     </li>
-                    <li><a href="/contact">Contact <strong>(NOT DONE!)</strong></a></li>
+                    <li><a href="/contact">Contact</a></li>
                     <li><a href="/faq/Info/Intro">FAQs</a></li>
                 </ul>
             </LargeScreen>
